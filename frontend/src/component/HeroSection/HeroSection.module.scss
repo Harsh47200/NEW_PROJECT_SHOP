@@ -1,0 +1,432 @@
+// components/HeroSection/HeroSection.scss
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    height: 100%;
+  }
+
+  &__slide {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.7s ease-in-out;
+
+    &__active {
+      transform: translateX(0);
+    }
+
+    &__prev {
+      transform: translateX(-100%);
+    }
+
+    &__next {
+      transform: translateX(100%);
+    }
+  }
+
+  &__background {
+    height: 100%;
+    position: relative;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: 640px) {
+      padding: 0 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 0 2rem;
+    }
+  }
+
+  &__text {
+    max-width: 32rem;
+    color: white;
+    animation: fade-in 0.6s ease-out;
+
+    @media (min-width: 1024px) {
+      max-width: 64rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    animation: slide-up 0.8s ease-out;
+
+    @media (min-width: 640px) {
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 3.75rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    animation: slide-up 0.8s ease-out;
+    animation-delay: 0.2s;
+
+    @media (min-width: 640px) {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    max-width: 32rem;
+    animation: slide-up 0.8s ease-out;
+    animation-delay: 0.4s;
+
+    @media (min-width: 640px) {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1.125rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    animation: slide-up 0.8s ease-out;
+    animation-delay: 0.6s;
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+
+  &__btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+
+    @media (min-width: 640px) {
+      padding: 0.75rem 2rem;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.5s;
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+
+    &__primary {
+      background: white;
+      color: rgb(31, 41, 55);
+    }
+
+    &__secondary {
+      border: 2px solid white;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s;
+    z-index: 20;
+    display: none;
+    border: none;
+    cursor: pointer;
+
+    @media (min-width: 640px) {
+      display: block;
+      padding: 0.75rem;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 0.75rem;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.5s;
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+
+    &__prev {
+      left: 0.5rem;
+
+      @media (min-width: 640px) {
+        left: 1rem;
+      }
+
+      @media (min-width: 1024px) {
+        left: 1.5rem;
+      }
+    }
+
+    &__next {
+      right: 0.5rem;
+
+      @media (min-width: 640px) {
+        right: 1rem;
+      }
+
+      @media (min-width: 1024px) {
+        right: 1.5rem;
+      }
+    }
+  }
+
+  &__nav_icon {
+    width: 1rem;
+    height: 1rem;
+
+    @media (min-width: 640px) {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    @media (min-width: 1024px) {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 20;
+
+    @media (min-width: 640px) {
+      bottom: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      bottom: 2rem;
+    }
+  }
+
+  &__indicator {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    @media (min-width: 640px) {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.5s;
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(234, 179, 8, 0.6), 0 0 40px rgba(234, 179, 8, 0.3);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
