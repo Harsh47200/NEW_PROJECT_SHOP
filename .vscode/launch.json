@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-JcbApi<jcb-api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.bisag.jkcip.JcbApi",
+            "projectName": "jcb-api",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

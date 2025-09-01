@@ -36,15 +36,18 @@
       <artifactId>spring-boot-starter-actuator</artifactId>
       <optional>true</optional>
     </dependency>
+
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
+
     <dependency>
         <groupId>com.squareup.okhttp3</groupId>
         <artifactId>okhttp</artifactId>
         <version>4.12.0</version>
     </dependency>
+
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -62,20 +65,9 @@
       <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
 
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-validation</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
 
     <dependency>
@@ -113,29 +105,52 @@
       <artifactId>commons-lang3</artifactId>
     </dependency>
 
- 
-
     <dependency>
       <groupId>org.locationtech.jts</groupId>
       <artifactId>jts-core</artifactId>
       <version>1.19.0</version>
     </dependency>
 
-
-
-
   </dependencies>
 
   <build>
-    <finalName>jcb-api</finalName>
-  <plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-compiler-plugin</artifactId>
-  <version>3.11.0</version>
-  <configuration>
-    <release>17</release>
-  </configuration>
-</plugin>
+    <finalName>jcb</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
+
+   <distributionManagement>
+    <repository>
+        <id>releases</id>
+        <name>Your Release Repository</name>
+        <url>http://your-nexus-server/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>Your Snapshot Repository</name>
+        <url>http://your-nexus-server/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 </project>

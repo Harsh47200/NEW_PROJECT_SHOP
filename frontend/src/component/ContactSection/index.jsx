@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Phone, Mail, MapPin, X } from "lucide-react";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import scss from "./ContactSection.module.scss";
 
 const ContactSection = () => {
@@ -8,59 +8,62 @@ const ContactSection = () => {
   const [messages, setMessages] = useState({ sms: "", email: "" });
   const [showEmergencyForm, setShowEmergencyForm] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    phoneNumber: '',
-    details: ''
+    email: "",
+    name: "",
+    phoneNumber: "",
+    details: "",
   });
 
   const handleRequestService = async () => {
-    setIsLoading(prev => ({ ...prev, sms: true }));
-    setMessages(prev => ({ ...prev, sms: "" }));
-    
+    setIsLoading((prev) => ({ ...prev, sms: true }));
+    setMessages((prev) => ({ ...prev, sms: "" }));
+
     try {
-      const response = await fetch('http://localhost:8080/api/contact/service-request', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phoneNumber: "+917990178938", // Your target phone
-          message: "Service request from website user"
-        })
-      });
-      
+      const response = await fetch(
+        "http://localhost:8080/api/contact/service-request",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            phoneNumber: "+917990178938", // Your target phone
+            message: "Service request from website user",
+          }),
+        }
+      );
+
       const data = await response.json();
-      
-      if (data.status === 'success') {
+
+      if (data.status === "success") {
         Swal.fire({
-          icon: 'success',
-          title: 'SMS Sent!',
-          text: 'Service request SMS sent successfully!',
-          confirmButtonText: 'OK',
-          confirmButtonColor: '#10b981',
+          icon: "success",
+          title: "SMS Sent!",
+          text: "Service request SMS sent successfully!",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#10b981",
           timer: 3000,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'SMS Failed',
-          text: 'Failed to send SMS: ' + data.message,
-          confirmButtonText: 'OK',
-          confirmButtonColor: '#ef4444'
+          icon: "error",
+          title: "SMS Failed",
+          text: "Failed to send SMS: " + data.message,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#ef4444",
         });
       }
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Error: ' + error.message,
-        confirmButtonText: 'OK',
-        confirmButtonColor: '#ef4444'
+        icon: "error",
+        title: "Error",
+        text: "Error: " + error.message,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#ef4444",
       });
     } finally {
-      setIsLoading(prev => ({ ...prev, sms: false }));
+      setIsLoading((prev) => ({ ...prev, sms: false }));
     }
   };
 
@@ -72,35 +75,39 @@ const ContactSection = () => {
     // Validate required fields
     if (!formData.email.trim()) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Email Required',
-        text: 'Please enter your email address',
-        confirmButtonText: 'OK',
-        confirmButtonColor: '#f59e0b'
+        icon: "warning",
+        title: "Email Required",
+        text: "Please enter your email address",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#f59e0b",
       });
       return;
     }
-    
-    setIsLoading(prev => ({ ...prev, email: true }));
-    
+
+    setIsLoading((prev) => ({ ...prev, email: true }));
+
     try {
-      const response = await fetch('http://localhost:8080/api/contact/emergency-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-      
+      const response = await fetch(
+        "http://localhost:2121/api/contact/emergency-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      console.log("first", response);
+
       const result = await response.json();
-      
-      if (result.status === 'success') {
+
+      if (result.status === "success") {
         setShowEmergencyForm(false);
-        setFormData({ email: '', name: '', phoneNumber: '', details: '' });
-        
+        setFormData({ email: "", name: "", phoneNumber: "", details: "" });
+
         Swal.fire({
-          icon: 'success',
-          title: 'Emergency Email Sent!',
+          icon: "success",
+          title: "Emergency Email Sent!",
           html: `
             <div style="text-align: center;">
               <p style="font-size: 16px; margin-bottom: 10px;">Emergency email sent successfully!</p>
@@ -108,51 +115,51 @@ const ContactSection = () => {
               <p style="font-size: 14px; color: #666;">Check your email for emergency support details and next steps.</p>
             </div>
           `,
-          confirmButtonText: 'Got it!',
-          confirmButtonColor: '#dc2626',
+          confirmButtonText: "Got it!",
+          confirmButtonColor: "#dc2626",
           timer: 5000,
           timerProgressBar: true,
           showClass: {
-            popup: 'animate__animated animate__fadeInDown'
+            popup: "animate__animated animate__fadeInDown",
           },
           hideClass: {
-            popup: 'animate__animated animate__fadeOutUp'
-          }
+            popup: "animate__animated animate__fadeOutUp",
+          },
         });
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Email Failed',
-          text: 'Failed to send email: ' + result.message,
-          confirmButtonText: 'OK',
-          confirmButtonColor: '#ef4444'
+          icon: "error",
+          title: "Email Failed",
+          text: "Failed to send email: " + result.message,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#ef4444",
         });
       }
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Network error. Please try again.',
-        confirmButtonText: 'OK',
-        confirmButtonColor: '#ef4444'
+        icon: "error",
+        title: "Error",
+        text: "Network error. Please try again.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#ef4444",
       });
-      console.error('Emergency email error:', error);
+      console.error("Emergency email error:", error);
     } finally {
-      setIsLoading(prev => ({ ...prev, email: false }));
+      setIsLoading((prev) => ({ ...prev, email: false }));
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const closeForm = () => {
     setShowEmergencyForm(false);
-    setFormData({ email: '', name: '', phoneNumber: '', details: '' });
+    setFormData({ email: "", name: "", phoneNumber: "", details: "" });
   };
 
   return (
@@ -218,7 +225,7 @@ const ContactSection = () => {
               </div>
             ))}
           </div>
-          
+
           <div className={scss.contact__buttons}>
             <button
               className={`${scss.contact__btn} ${scss.contact__btn__primary}`}
@@ -251,7 +258,7 @@ const ContactSection = () => {
               )}
             </button>
           </div>
-          
+
           {/* Status Messages */}
           {(messages.sms || messages.email) && (
             <div className={scss.contact__messages}>
@@ -278,7 +285,7 @@ const ContactSection = () => {
               <h2 className={scss.modal__title}>
                 🚨 Emergency Support Request
               </h2>
-              <button 
+              <button
                 className={scss.modal__close}
                 onClick={closeForm}
                 type="button"
@@ -286,12 +293,10 @@ const ContactSection = () => {
                 <X size={20} />
               </button>
             </div>
-            
+
             <div className={scss.modal__content}>
               <div className={scss.form__group}>
-                <label className={scss.form__label}>
-                  Email Address *
-                </label>
+                <label className={scss.form__label}>Email Address *</label>
                 <input
                   type="email"
                   name="email"
@@ -304,9 +309,7 @@ const ContactSection = () => {
               </div>
 
               <div className={scss.form__group}>
-                <label className={scss.form__label}>
-                  Your Name
-                </label>
+                <label className={scss.form__label}>Your Name</label>
                 <input
                   type="text"
                   name="name"
@@ -318,9 +321,7 @@ const ContactSection = () => {
               </div>
 
               <div className={scss.form__group}>
-                <label className={scss.form__label}>
-                  Phone Number
-                </label>
+                <label className={scss.form__label}>Phone Number</label>
                 <input
                   type="tel"
                   name="phoneNumber"
@@ -332,9 +333,7 @@ const ContactSection = () => {
               </div>
 
               <div className={scss.form__group}>
-                <label className={scss.form__label}>
-                  Emergency Details
-                </label>
+                <label className={scss.form__label}>Emergency Details</label>
                 <textarea
                   name="details"
                   value={formData.details}

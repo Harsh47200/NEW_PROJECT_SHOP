@@ -1,9 +1,0 @@
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\dto\request\SmsRequest.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\JcbApi.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\utils\GlobalExceptionHandler.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\config\CommunicationConfig.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\services\EmailService.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\dto\request\EmailRequest.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\dto\responce\ApiResponse.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\controllers\CommunicationController.java
-D:\New_Project_Industrial\My Project\backend\src\main\java\org\bisag\jkcip\services\SmsService.java

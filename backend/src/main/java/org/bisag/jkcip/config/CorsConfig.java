@@ -1,4 +1,4 @@
- package org.bisag.jkcip.config;
+package org.bisag.jkcip.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
