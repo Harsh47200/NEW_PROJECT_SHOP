@@ -1,0 +1,8 @@
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/config/CorsConfig.java
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/JcbApi.java
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/dto/request/SmsRequestDto.java
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/services/ContactService.java
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/dto/responce/ApiResponse.java
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/utils/MeetUtil.java
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/controllers/ContactController.java
+/home/bisag/Documents/NEW_PROJECT_SHOP/backend/src/main/java/org/bisag/jkcip/dto/request/EmailRequestDto.java

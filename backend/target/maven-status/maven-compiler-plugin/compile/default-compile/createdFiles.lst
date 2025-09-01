@@ -1,0 +1,9 @@
+org/bisag/jkcip/dto/request/EmailRequestDto.class
+org/bisag/jkcip/JcbApi.class
+org/bisag/jkcip/dto/request/SmsRequestDto.class
+org/bisag/jkcip/config/CorsConfig$1.class
+org/bisag/jkcip/services/ContactService.class
+org/bisag/jkcip/controllers/ContactController.class
+org/bisag/jkcip/utils/MeetUtil.class
+org/bisag/jkcip/config/CorsConfig.class
+org/bisag/jkcip/dto/responce/ApiResponse.class
