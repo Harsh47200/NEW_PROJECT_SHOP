@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { GiGearHammer } from "react-icons/gi"; // gear + hammer icon for engineering
+import { GiGearHammer } from "react-icons/gi";
 import scss from "./Header.module.scss";
 import { clsx } from "@/utils/string";
 
@@ -8,6 +8,8 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const menuItems = ["Home", "Services", "About", "Reviews", "RentJcb", "Contact"];
 
   return (
     <header className={scss.header}>
@@ -30,18 +32,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className={scss.header__nav}>
-            {["Home", "Services", "About", "Reviews", "Contact"].map(
-              (item, index) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className={scss.header__nav_link}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {item}
-                </a>
-              )
-            )}
+            {menuItems.map((item, index) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className={scss.header__nav_link}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {item}
+              </a>
+            ))}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -58,19 +58,17 @@ const Header = () => {
         {isMenuOpen && (
           <nav className={scss.header__mobile_nav}>
             <div className={scss.header__mobile_nav_content}>
-              {["Home", "Services", "About", "Reviews", "Contact"].map(
-                (item, index) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className={scss.header__mobile_nav_link}
-                    onClick={() => setIsMenuOpen(false)}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    {item}
-                  </a>
-                )
-              )}
+              {menuItems.map((item, index) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className={scss.header__mobile_nav_link}
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {item}
+                </a>
+              ))}
             </div>
           </nav>
         )}
