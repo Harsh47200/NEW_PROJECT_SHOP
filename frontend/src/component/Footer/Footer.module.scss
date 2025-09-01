@@ -38,7 +38,7 @@
   }
 
   &__logo {
-    width: 2.5rem; // ~30px high-res size
+    width: 2.5rem;
     height: 2.5rem;
     background: radial-gradient(circle, #facc15, #d97706);
     border-radius: 50%;
@@ -81,6 +81,37 @@
     color: #9ca3af;
     animation: slide-up 0.8s ease-out;
     animation-delay: 0.3s;
+  }
+
+  /* Scroll to top button */
+  &__scrollTop {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: linear-gradient(135deg, #facc15, #d97706);
+    color: #111827;
+    border: none;
+    border-radius: 50%;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(250, 204, 21, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fade-in-up 0.8s ease both, float 3s ease-in-out infinite;
+    z-index: 50;
+
+    &:hover {
+      transform: translateY(-6px) scale(1.1);
+      box-shadow: 0 0 25px rgba(250, 204, 21, 0.9);
+    }
+
+    svg {
+      animation: bounce-in 0.8s ease;
+    }
   }
 }
 
@@ -136,5 +167,29 @@
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
   }
 }

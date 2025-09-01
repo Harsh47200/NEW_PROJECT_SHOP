@@ -31,6 +31,7 @@
   &__grid {
     display: grid;
     gap: 2rem;
+
     @media (min-width: 1024px) {
       grid-template-columns: 1fr 1fr;
     }
@@ -41,8 +42,17 @@
     position: relative;
     overflow: hidden;
     border-radius: 1rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
     animation: slide-up 0.8s ease-out;
+    height: 641px;
+    
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
   }
 
   &__map_overlay {
@@ -81,8 +91,46 @@
     border-radius: 50%;
     padding: 0.5rem;
     animation: pulse-glow 2s infinite;
+
     svg {
       color: #ef4444;
+    }
+  }
+
+  /* Map controls */
+  &__map_controls {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  &__map_btn {
+    background: #2563eb;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: #1d4ed8;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &--toggle {
+      background: linear-gradient(135deg, #3b82f6, #9333ea);
     }
   }
 
@@ -103,6 +151,7 @@
     padding: 1.5rem;
     border-radius: 0.75rem;
     transition: all 0.4s;
+
     &:hover {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
@@ -147,6 +196,7 @@
     justify-content: center;
     gap: 0.5rem;
     transition: all 0.3s;
+
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -169,6 +219,7 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     position: relative;
     transition: all 0.3s;
+
     &:hover {
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
@@ -183,6 +234,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto 1rem;
+
     svg {
       color: #2563eb;
       width: 2.5rem;
@@ -198,6 +250,7 @@
     border-radius: 0.5rem;
     font-weight: 600;
     transition: all 0.3s;
+
     &:hover {
       background: #1d4ed8;
       transform: scale(1.05);
@@ -209,6 +262,7 @@
     border-radius: 50%;
     animation: pulse 2s infinite ease-in-out;
   }
+
   &__map_decorative--1 {
     top: 1rem;
     left: 1rem;
@@ -216,6 +270,7 @@
     height: 0.5rem;
     background: #4ade80;
   }
+
   &__map_decorative--2 {
     top: 1rem;
     right: 1rem;
@@ -223,6 +278,7 @@
     height: 0.4rem;
     background: #3b82f6;
   }
+
   &__map_decorative--3 {
     bottom: 1rem;
     left: 2rem;
@@ -230,6 +286,7 @@
     height: 0.6rem;
     background: #ef4444;
   }
+
   &__map_decorative--4 {
     bottom: 1rem;
     right: 1rem;
@@ -241,28 +298,67 @@
 
 /* Animations */
 @keyframes slide-up {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
+
 @keyframes bounce-in {
-  0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1.1); }
-  70% { transform: scale(0.9); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
+
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
+
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); }
-  50% { box-shadow: 0 0 30px rgba(234, 179, 8, 0.8); }
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(234, 179, 8, 0.8);
+  }
 }
+
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.2); opacity: 1; }
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
 }

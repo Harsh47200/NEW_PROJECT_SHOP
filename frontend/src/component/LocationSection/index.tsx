@@ -1,8 +1,10 @@
-import React from "react";
-import { MapPin, Clock, Navigation } from "lucide-react";
+import React, { useState } from "react";
+import { MapPin, Clock, Navigation, Layers } from "lucide-react";
 import styles from "./LocationSection.module.scss";
 
 const LocationSection = () => {
+  const [satellite, setSatellite] = useState(false);
+
   return (
     <section id="location" className={styles.location}>
       <div className={styles.location__container}>
@@ -19,10 +21,11 @@ const LocationSection = () => {
           {/* Map Section */}
           <div className={styles.location__map}>
             <iframe
-              src="https://www.google.com/maps?q=23.805773,72.379625&hl=en&z=15&output=embed"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
+              src={
+                satellite
+                  ? "https://www.google.com/maps?q=23.805773,72.379625&hl=en&z=16&t=k&output=embed" // Satellite
+                  : "https://www.google.com/maps?q=23.805773,72.379625&hl=en&z=16&t=m&output=embed" // Normal
+              }
               allowFullScreen
               loading="lazy"
               title="Workshop Location"
@@ -36,6 +39,25 @@ const LocationSection = () => {
             </div>
             <div className={styles.location__map_pin}>
               <MapPin />
+            </div>
+
+            {/* Map Buttons */}
+            <div className={styles.location__map_controls}>
+              <button
+                className={`${styles.location__map_btn} ${styles["location__map_btn--toggle"]}`}
+                onClick={() => setSatellite((prev) => !prev)}
+              >
+                <Layers size={16} />
+                {satellite ? "Normal View" : "Satellite View"}
+              </button>
+              {/* <button
+                className={styles.location__map_btn}
+                onClick={() =>
+                  window.open("https://www.google.com/maps?q=23.805773,72.379625", "_blank")
+                }
+              >
+                <Navigation size={16} /> Get Directions
+              </button> */}
             </div>
           </div>
 
@@ -99,7 +121,7 @@ const LocationSection = () => {
           </div>
         </div>
 
-        {/* Interactive Map */}
+        {/* Interactive Map Box */}
         <div className={styles.location__map_interactive}>
           <h4 className={styles.location__map_interactive_title}>Interactive Workshop Map</h4>
           <p className={styles.location__map_interactive_subtitle}>

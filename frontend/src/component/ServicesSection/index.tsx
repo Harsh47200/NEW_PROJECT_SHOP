@@ -39,7 +39,7 @@ const ServicesSection = () => {
     {
       icon: <Settings className={scss.services__additional_icon} style={{ "--delay": "0.2s" }} />,
       title: "Hardbasing Design Welding",
-      desc: "Specialized welding for heavy-duty applications.",
+      desc: "Specialized welding for heavy-duty welding road use.",
     },
     {
       icon: <Shield className={scss.services__additional_icon} style={{ "--delay": "0.3s" }} />,
