@@ -11,6 +11,7 @@ import TestimonialsSection from "@/component/TestimonialsSection";
 import ContactSection from "@/component/ContactSection";
 import Footer from "@/component/Footer";
 import RentJcb from "@/component/RentJcbSection";
+import JCBRentSection from "@/component/RentJcbSection";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ export default function Home() {
       <DescriptionSection />
       <ServicesSection />
       <AboutSection />
-      <RentJcb/>
+      <JCBRentSection/>
       <LocationSection />
       <TestimonialsSection />
       <ContactSection />
