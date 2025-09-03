@@ -95,17 +95,42 @@ const JCBRentSection = () => {
       !formData.village ||
       !formData.rentTime
     ) {
-      alert("Please fill all fields");
+      Swal.fire({
+        title: "Missing fields",
+        text: "Please fill all fields",
+        icon: "warning",
+        confirmButtonText: "OK",
+        timer: 1800,
+        backdrop: false,
+        showClass: { popup: "animate__animated animate__fadeInDown" },
+        hideClass: { popup: "animate__animated animate__fadeOutUp" },
+      });
       return false;
     }
     const mobileOk = /^[6-9]\d{9}$/.test(formData.mobile);
     if (!mobileOk) {
-      alert("Please enter a valid 10-digit Indian mobile number");
+      Swal.fire({
+        title: "Invalid Mobile Number",
+        text: "Please enter a valid 10-digit Indian mobile number",
+        icon: "error",
+        confirmButtonText: "OK",
+        backdrop: true,
+        showClass: { popup: "animate__animated animate__shakeX" },
+        hideClass: { popup: "animate__animated animate__fadeOutUp" },
+      });
       return false;
     }
     const emailOk = /^[A-Za-z0-9+_.-]+@(.+)$/.test(formData.email);
     if (!emailOk) {
-      alert("Please enter a valid email address");
+      Swal.fire({
+        title: "Invalid Email",
+        text: "Please enter a valid email address",
+        icon: "warning",
+        confirmButtonText: "OK",
+        backdrop: true,
+        showClass: { popup: "animate__animated animate__fadeInDown" },
+        hideClass: { popup: "animate__animated animate__fadeOutUp" },
+      });
       return false;
     }
     return true;
@@ -153,10 +178,34 @@ const JCBRentSection = () => {
         });
       }
       else {
-        alert(data.message || "Failed to submit request. Please try again.");
+        Swal.fire({
+          title: "Submission Failed",
+          text: data.message || "Failed to submit request. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+          backdrop: true,
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
       }
     } catch (err) {
-      alert("Failed to submit request. Please try again.");
+      Swal.fire({
+        title: "Failed!",
+        text: "Failed to submit request. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+        backdrop: true,
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     } finally {
       setSubmitting(false);
     }
