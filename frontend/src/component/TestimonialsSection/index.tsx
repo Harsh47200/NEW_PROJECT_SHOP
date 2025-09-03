@@ -35,7 +35,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section id="testimonials" className={styles.testimonials}>
+    <section id="reviews" className={styles.testimonials}>
       <div className={styles["testimonials__container"]}>
         <h3 className={styles["testimonials__title"]}>What Our Clients Say</h3>
         <p className={styles["testimonials__subtitle"]}>

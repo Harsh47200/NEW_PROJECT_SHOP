@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import scss from "./RentJcbSection.module.scss";
+import Swal from "sweetalert2";
 
 const JCBRentSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -59,11 +60,11 @@ const JCBRentSection = () => {
   ];
 
   const indianStates = [
-    "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa",
-    "Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala",
-    "Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland",
-    "Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura",
-    "Uttar Pradesh","Uttarakhand","West Bengal"
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
+    "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
+    "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+    "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+    "Uttar Pradesh", "Uttarakhand", "West Bengal"
   ];
 
   useEffect(() => {
@@ -127,7 +128,19 @@ const JCBRentSection = () => {
 
       const data = await response.json();
       if (response.ok && data.status === "success") {
-        alert(data.message || "Your request has been submitted successfully! We’ll contact you immediately.");
+        Swal.fire({
+          title: "✅ Request Submitted!",
+          text: data.message || "Your request has been submitted successfully! We’ll contact you immediately.",
+          icon: "success",
+          confirmButtonText: "OK",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+
         setFormData({
           name: "",
           email: "",
@@ -138,7 +151,8 @@ const JCBRentSection = () => {
           rentTime: "",
           equipmentType: "JCB",
         });
-      } else {
+      }
+      else {
         alert(data.message || "Failed to submit request. Please try again.");
       }
     } catch (err) {
@@ -154,7 +168,7 @@ const JCBRentSection = () => {
     setCurrentImageIndex((prev) => (prev - 1 + jcbImages.length) % jcbImages.length);
 
   return (
-    <section className={scss["jcb-rent-section"]}>
+    <section id="rentjcb" className={scss["jcb-rent-section"]}>
       <div className={scss["jcb-rent-section__container"]}>
         {/* Header */}
         <motion.div
@@ -232,9 +246,8 @@ const JCBRentSection = () => {
               {jcbImages.map((image, index) => (
                 <div
                   key={index}
-                  className={`${scss["jcb-rent-section__thumbnail"]} ${
-                    currentImageIndex === index ? scss["active"] : ""
-                  }`}
+                  className={`${scss["jcb-rent-section__thumbnail"]} ${currentImageIndex === index ? scss["active"] : ""
+                    }`}
                   onClick={() => setCurrentImageIndex(index)}
                 >
                   <img src={image} alt={`Thumbnail ${index + 1}`} />
